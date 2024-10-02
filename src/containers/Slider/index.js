@@ -4,6 +4,7 @@ import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
 
+
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
@@ -22,9 +23,9 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        <div key={event.title}>
           <div
-            key={event.title}
+            // key={event.title}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -43,15 +44,17 @@ const Slider = () => {
               {byDateDesc?.map((_, radioIdx) => (
                 <input
                   // key={`${event.id}`} ancienne valeur
-                  key={event.title}
+                  // key={event.title}
+                  key={`${_.title}`}
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
+                  readOnly
                 />
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
