@@ -1,5 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import '@testing-library/jest-dom/extend-expect';
 import Home from "./index";
+import { useData } from "../../contexts/DataContext";
 
 describe("When Form is created", () => {
   it("a list of fields card is displayed", async () => {
@@ -29,16 +31,30 @@ describe("When Form is created", () => {
 
 
 describe("When a page is created", () => {
-  it("a list of events is displayed", () => {
-    // to implement
+  it("a list of events is displayed", async () => {
+    render(<Home />);
+    
+    // await screen.findByRole("img")
   })
-  it("a list a people is displayed", () => {
-    // to implement
+  it("a list a people is displayed",async () => {
+    render(<Home />)
+    await screen.findByText("Alice")
+    await screen.findByText("CEO")
+    await screen.findByText("Samira")
+    await screen.findByText("Jean-baptiste")
   })
+    
   it("a footer is displayed", () => {
-    // to implement
+    render(<Home />)
+    const footer = screen.getByTestId("footer");
+    expect(footer).toBeInTheDocument();
   })
-  it("an event card, with the last event, is displayed", () => {
-    // to implement
+  it("an event card, with the last event, is displayed", async () => {
+    render(<Home />);
+    setTimeout(() => {
+        const { last } = useData();
+        screen.findByTestId("event-card");
+        screen.findByText(last.title);
+    }, 100);
   })
-});
+})
