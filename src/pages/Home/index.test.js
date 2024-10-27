@@ -32,9 +32,15 @@ describe("When Form is created", () => {
 
 describe("When a page is created", () => {
   it("a list of events is displayed", async () => {
-    render(<Home />);
+   
+    const { container } = render(<Home />);
+     setTimeout(() => {
+    const Realisation = container.querySelector("#realisationTitle");
+    expect(Realisation.innerHTML).toEqual("Nos réalisations");
+    const events = container.querySelector("#events");
+    expect(events).toBeInTheDocument();
+  }, 100);
     
-    // await screen.findByRole("img")
   })
   it("a list a people is displayed",async () => {
     render(<Home />)
