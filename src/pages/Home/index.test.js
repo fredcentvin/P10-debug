@@ -34,11 +34,11 @@ describe("When a page is created", () => {
   it("a list of events is displayed", async () => {
    
     const { container } = render(<Home />);
-     setTimeout(() => {
-    const Realisation = container.querySelector("#realisationTitle");
-    expect(Realisation.innerHTML).toEqual("Nos réalisations");
-    const events = container.querySelector("#events");
-    expect(events).toBeInTheDocument();
+      setTimeout(() => {
+      const realisation = container.querySelector("#realisationTitle");
+      expect(realisation.innerHTML).toEqual("Nos réalisations");
+      const events = container.querySelector("#events");
+      expect(events).toBeInTheDocument();
   }, 100);
     
   })
